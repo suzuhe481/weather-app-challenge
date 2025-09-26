@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "BricolageGrotesque";
+  src: url("/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf");
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url("/fonts/DMSans/DMSans-VariableFont_opsz,wght.ttf");
+}
+
+@font-face {
+  font-family: "DMSansItalic";
+  src: url("/fonts/DMSans/DMSans-Italic-VariableFont_opsz,wght.ttf");
+}
+
+@theme {
+  /* Fonts */
+  --font-primary: "BricolageGrotesque", sans-serif;
+  --font-secondary: "DMSans", sans-serif;
+  --font-secondary-italic: "DMSansItalic", sans-serif;
+}
