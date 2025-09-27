@@ -12,6 +12,7 @@ This is my solution to the [Weather app challenge on Frontend Mentor](https://ww
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
 - [Author](#author)
+- [Releases](#releases)
 
 ## Overview
 
@@ -35,7 +36,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: https://weathernow.hectorsuazo.com/
 
 ## My Process
 
@@ -59,3 +60,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 ## Author
 
 - Portfolio - [Hector](https://www.hectorsuazo.com/)
+
+## Releases
+
+- [v0.1.0 (Pre-release)](https://github.com/suzuhe481/weather-app-challenge/releases)
