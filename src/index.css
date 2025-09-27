@@ -37,3 +37,40 @@
   --color-blue-500: #4658d9;
   --color-blue-700: #2b1b9c;
 }
+
+/* Text Styles */
+.text-preset-1 {
+  @apply font-secondary-italic font-semibold text-8xl leading-[100%] tracking-[-2px];
+}
+
+.text-preset-2 {
+  @apply font-primary font-bold text-[52px] leading-[100%];
+}
+
+.text-preset-3 {
+  @apply font-secondary font-light text-[32px] leading-[100%];
+}
+
+.text-preset-4 {
+  @apply font-secondary font-bold text-[28px] leading-[120%];
+}
+
+.text-preset-5 {
+  @apply font-secondary font-semibold text-xl leading-[120%];
+}
+
+.text-preset-5-medium {
+  @apply font-secondary font-medium text-xl leading-[120%];
+}
+
+.text-preset-6 {
+  @apply font-secondary font-medium text-lg leading-[120%];
+}
+
+.text-preset-7 {
+  @apply font-secondary font-medium text-base leading-[120%];
+}
+
+.text-preset-8 {
+  @apply font-secondary font-medium text-sm leading-[120%];
+}
