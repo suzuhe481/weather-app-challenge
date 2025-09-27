@@ -4,7 +4,9 @@ const Logo = () => {
   return (
     <div className="flex flex-row justify-start items-center gap-[10px]">
       <LogoIcon />
-      <div className="text-neutral-0 font-primary font-bold">Weather Now</div>
+      <div className="font-primary text-neutral-0 font-bold text-[22px]">
+        Weather Now
+      </div>
     </div>
   );
 };
