@@ -2,6 +2,7 @@ import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import SearchBar from "./components/SearchBar/SearchBar";
 import MainWeather from "./components/MainWeather/MainWeather";
+import HourlyForecast from "./components/HourlyForecast/HourlyForecast";
 import StyledWrapper from "./components/StyledWrapper/StyledWrapper";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <div className="flex flex-row justify-center min-w-[300px]">
             <MainWeather />
           </div>
+          <HourlyForecast />
         </div>
       </StyledWrapper>
     </div>
