@@ -50,7 +50,7 @@ const hourlyData = {
 export const HourlyForecast = () => {
   return (
     <div className="flex flex-col gap-4 bg-neutral-800 w-full xl:w-[384px] h-[693px] rounded-[20px] p-6">
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row gap-2 justify-between items-center">
         <h3 className="text-preset-5 text-neutral-0">Hourly Forecast</h3>
         <DayButton currentDay={hourlyData.currentDay} />
       </div>
