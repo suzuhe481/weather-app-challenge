@@ -4,11 +4,12 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import MainWeather from "./components/MainWeather/MainWeather";
 import HourlyForecast from "./components/HourlyForecast/HourlyForecast";
 import CurrentConditions from "./components/CurrentConditions/CurrentConditions";
+import DailyForecast from "./components/DailyForecast/DailyForecast";
 import StyledWrapper from "./components/StyledWrapper/StyledWrapper";
 
 function App() {
   return (
-    <div className="bg-neutral-900 pt-6 pb-10 overflow-hidden">
+    <div className="bg-neutral-900 pt-6 pb-10 overflow-hidden min-h-screen">
       <Header />
       <Hero />
       <SearchBar />
@@ -17,6 +18,7 @@ function App() {
           <div className="flex flex-col justify-start w-full xl:max-w-[800px]">
             <MainWeather />
             <CurrentConditions />
+            <DailyForecast />
           </div>
           <HourlyForecast />
         </div>
