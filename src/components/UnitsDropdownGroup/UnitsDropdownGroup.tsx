@@ -25,7 +25,11 @@ const UnitsDropdownGroup = ({
       <div className="flex flex-col gap-1 ">
         {options.map((option, index) => {
           return (
-            <label className="flex justify-between items-center text-preset-7 text-neutral-0 py-2.5 px-2 hover:bg-neutral-600 cursor-pointer rounded-lg">
+            <label
+              className={`${
+                option === selected && "bg-neutral-600"
+              } flex justify-between items-center text-preset-7 text-neutral-0 py-2.5 px-2 hover:bg-neutral-600 cursor-pointer rounded-lg`}
+            >
               {optionsText[index]}
               <input
                 type="radio"
