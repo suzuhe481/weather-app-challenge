@@ -2,7 +2,7 @@ import { SearchIcon } from "../../assets/icons/pageIcons";
 
 const SearchInput = () => {
   return (
-    <div className="flex flex-row relative w-lg">
+    <div className="flex flex-row relative w-full md:w-lg">
       <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2" />
       <input
         type="text"
