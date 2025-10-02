@@ -1,22 +1,38 @@
-import { useState, useEffect } from "react";
 import type { RefObject } from "react";
 
 import UnitsDropdownGroup from "../UnitsDropdownGroup/UnitsDropdownGroup";
 
+import { useSettingsContext } from "../../hooks/useSettingsContext";
+
+import {
+  TEMPERATURE_UNITS,
+  WIND_UNITS,
+  PRECIPITATION_UNITS,
+} from "../../types/settingContextTypes";
+
+import type {
+  WindUnits,
+  TemperatureUnits,
+  PrecipitationUnits,
+} from "../../types/settingContextTypes";
+
+// Data for each UnitsDropdownGroup component.
+// Options are the unit values accepted by the API.
+// OptionsText are the values that will be displayed to the user.
 const dropdownData = {
   temperature: {
     title: "Temperature",
-    options: ["Celsius", "Fahrenheit"],
+    options: TEMPERATURE_UNITS,
     optionsText: ["Celsius (°C)", "Fahrenheit (°F)"],
   },
   windSpeed: {
     title: "Wind Speed",
-    options: ["km/h", "mph"],
+    options: WIND_UNITS,
     optionsText: ["km/h", "mph"],
   },
   precipitation: {
     title: "Precipitation",
-    options: ["mm", "in"],
+    options: PRECIPITATION_UNITS,
     optionsText: ["Millimeters (mm)", "inches (in)"],
   },
 };
@@ -29,52 +45,25 @@ interface IUnitsDropdownProps {
   ref: RefObject<HTMLDivElement | null>;
 }
 
+/**
+ * A component that renders a dropdown for selecting units.
+ * The component takes in a ref which is passed to the outermost div element.
+ * The currently selected option for each unit is highlighted with a background color.
+ */
 const UnitsDropdown = ({ ref }: IUnitsDropdownProps) => {
-  const [system, setSystem] = useState("Metric");
-  const [temperature, setTemperature] = useState("Celsius");
-  const [windSpeed, setWindSpeed] = useState("km/h");
-  const [precipitation, setPrecipitation] = useState("mm");
+  const {
+    system,
+    temperatureUnits,
+    windUnits,
+    precipitationUnits,
+    setTemperatureUnits,
+    setWindUnits,
+    setPrecipitationUnits,
+    handleSystemChange,
+  } = useSettingsContext();
 
-  const buttonText = system === "Metric" ? "Imperial" : "Metric";
-
-  const handleSystemChange = () => {
-    if (system === "Metric") {
-      setAllToImperial();
-    } else {
-      setAllToMetric();
-    }
-  };
-
-  const setAllToMetric = () => {
-    setSystem("Metric");
-    setTemperature("Celsius");
-    setWindSpeed("km/h");
-    setPrecipitation("mm");
-  };
-
-  const setAllToImperial = () => {
-    setSystem("Imperial");
-    setTemperature("Fahrenheit");
-    setWindSpeed("mph");
-    setPrecipitation("in");
-  };
-
-  // Sets the system state if all of the units are of the same system.
-  useEffect(() => {
-    if (
-      temperature === "Celsius" &&
-      windSpeed === "km/h" &&
-      precipitation === "mm"
-    ) {
-      setSystem("Metric");
-    } else if (
-      temperature === "Fahrenheit" &&
-      windSpeed === "mph" &&
-      precipitation === "in"
-    ) {
-      setSystem("Imperial");
-    }
-  }, [temperature, windSpeed, precipitation]);
+  // Displays the system state of the opposite of the current system.
+  const switchToSystem = system === "Metric" ? "Imperial" : "Metric";
 
   return (
     <div
@@ -85,40 +74,40 @@ const UnitsDropdown = ({ ref }: IUnitsDropdownProps) => {
         onClick={handleSystemChange}
         className="text-preset-7 text-neutral-0 py-2.5 px-2 hover:bg-neutral-700 w-full text-left rounded-lg hover:cursor-pointer"
       >
-        Switch to {buttonText}
+        Switch to {switchToSystem}
       </button>
 
       <Separator />
 
       {/* Temperature */}
-      <UnitsDropdownGroup
+      <UnitsDropdownGroup<TemperatureUnits>
         title={dropdownData.temperature.title}
         options={dropdownData.temperature.options}
         optionsText={dropdownData.temperature.optionsText}
-        action={setTemperature}
-        selected={temperature}
+        action={setTemperatureUnits}
+        selected={temperatureUnits}
       />
 
       <Separator />
 
       {/* Wind Speed */}
-      <UnitsDropdownGroup
+      <UnitsDropdownGroup<WindUnits>
         title={dropdownData.windSpeed.title}
         options={dropdownData.windSpeed.options}
         optionsText={dropdownData.windSpeed.optionsText}
-        action={setWindSpeed}
-        selected={windSpeed}
+        action={setWindUnits}
+        selected={windUnits}
       />
 
       <Separator />
 
       {/* Precipitation */}
-      <UnitsDropdownGroup
+      <UnitsDropdownGroup<PrecipitationUnits>
         title={dropdownData.precipitation.title}
         options={dropdownData.precipitation.options}
         optionsText={dropdownData.precipitation.optionsText}
-        action={setPrecipitation}
-        selected={precipitation}
+        action={setPrecipitationUnits}
+        selected={precipitationUnits}
       />
     </div>
   );
