@@ -1,21 +1,39 @@
 import type { Dispatch, SetStateAction } from "react";
 import { CheckIcon } from "../../assets/icons/pageIcons";
 
-interface IUnitsDropdownGroupProps {
+// Props for the UnitsDropdownGroup component.
+// The generic type parameter <T> is used to specify the type of the action.
+// readonly is used to assert that an immutable array is passed to resolve type errors.
+interface IUnitsDropdownGroupProps<T> {
   title: string;
-  options: string[];
-  optionsText: string[];
-  action: Dispatch<SetStateAction<string>>;
+  options: readonly string[];
+  optionsText: readonly string[];
+  action: Dispatch<SetStateAction<T>>;
   selected: string;
 }
 
-const UnitsDropdownGroup = ({
+/**
+ * A component that renders a dropdown group for selecting units.
+ * The component takes in a title, an array of options, an array of option texts,
+ * a radio button with a corresponding label.
+ * The currently selected option is highlighted with a background color.
+ *
+ * The <T,> is a generic type parameter where the comma is used to prevent TypeScript
+ * from interpretting the generic as an array or something else.
+ *
+ * @param {string} title - The title of the dropdown group.
+ * @param {string[]} options - An array of options to render.
+ * @param {string[]} optionsText - An array of text to render for each option.
+ * @param {Dispatch<SetStateAction<T>>} action - The action to dispatch when an option is selected.
+ * @param {string} selected - The currently selected option.
+ */
+const UnitsDropdownGroup = <T,>({
   title,
   options,
   optionsText,
   action,
   selected,
-}: IUnitsDropdownGroupProps) => {
+}: IUnitsDropdownGroupProps<T>) => {
   return (
     <div className="flex flex-col w-full">
       <div className="text-preset-8 text-neutral-300 py-1.5 px-2 pb-2">
@@ -36,7 +54,7 @@ const UnitsDropdownGroup = ({
                 name={title}
                 value={option}
                 checked={option === selected}
-                onChange={() => action(option)}
+                onChange={() => action(option as T)}
                 className="hidden"
               />
               {option === selected && <CheckIcon />}
