@@ -1,19 +1,46 @@
-interface IAPIResponse<T> {
-  data?: T;
+interface ICurrentWeather {
+  temperature_2m: number;
+  apparent_temperature: number;
+  weather_code: number;
+
+  relative_humidity_2m: number;
+  wind_speed_10m: number;
+  wind_direction_10m: number;
+  precipitation: number;
 }
 
-export default async function fetchWeather<T>(
+interface IDailyWeather {
+  time: string[];
+  weather_code: number[];
+  temperature_2m_max: number[];
+  temperature_2m_min: number[];
+  uv_index_max: number[];
+}
+
+interface IHourlyWeather {
+  time: string[];
+  weather_code: number[];
+  temperature_2m: number[];
+}
+
+export interface IAPIWeatherResponse {
+  current: ICurrentWeather;
+  daily: IDailyWeather;
+  hourly: IHourlyWeather;
+}
+
+export default async function fetchWeather(
   latitude: number,
   longitude: number,
   signal: AbortSignal,
   temperatureUnit: string = "Celsius",
   windSpeedUnit: string = "kmh",
   precipitationUnit: string = "mm"
-): Promise<IAPIResponse<T>> {
+): Promise<IAPIWeatherResponse> {
   const baseUrl = "https://api.open-meteo.com/v1/forecast";
 
   const baseWeatherOptions =
-    "&daily=weather_code,temperature_2m_max,temperature_2m_min,uv_index_max&hourly=temperature_2m,weather_code&current=apparent_temperature,temperature_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m&timezone=auto";
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min,uv_index_max&hourly=temperature_2m,weather_code&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m&timezone=auto";
 
   const temperatureUnitOption =
     temperatureUnit === "Fahrenheit"
