@@ -1,9 +1,10 @@
 import type { Dispatch, SetStateAction, RefObject } from "react";
+import type { ILocation } from "../../utils/fetchLocations";
 
 interface ISearchItemProps {
   searchItemRefs: RefObject<HTMLButtonElement[] | null>;
   index: number;
-  location: string;
+  location: ILocation;
   setQuery: Dispatch<SetStateAction<string>>;
   setSearchFocused: Dispatch<SetStateAction<boolean>>;
 }
@@ -16,7 +17,7 @@ const SearchItem = ({
   setSearchFocused,
 }: ISearchItemProps) => {
   const handleButtonClick = () => {
-    setQuery(location);
+    setQuery(`${location.name}, ${location.country}`);
     setSearchFocused(false);
   };
 
@@ -36,7 +37,7 @@ const SearchItem = ({
       onClick={handleButtonClick}
       className="text-preset-7 text-neutral-0 rounded-lg text-left hover:bg-neutral-700 hover:border-neutral-600 border-transparent border-1 py-2.5 px-2 cursor-pointer"
     >
-      {location}
+      {location.name}, {location.country}
     </button>
   );
 };

@@ -1,11 +1,11 @@
-interface ILocation {
+export interface ILocation {
   name: string;
   country: string;
   latitude: number;
   longitude: number;
 }
 
-interface IAPILocationsResponse {
+export interface IAPILocationsResponse {
   results: ILocation[];
 }
 
