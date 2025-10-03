@@ -13,6 +13,7 @@ const SearchInput = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const searchDropdownRef = useRef<HTMLDivElement>(null);
+  const locationAbortControllerRef = useRef<AbortController | null>(null);
 
   // Determines if the dropdown should be displayed
   const displayDropdown =
@@ -52,6 +53,44 @@ const SearchInput = () => {
       controller.abort();
     };
   });
+
+  // Fetches locations on input query change
+  useEffect(() => {
+    // Debounces fetch
+    const debounceHandler = setTimeout(async () => {
+      if (locationAbortControllerRef.current) {
+        locationAbortControllerRef.current.abort();
+      }
+
+      // API only accepts strings of length >= 3
+      if (query.length >= 3) {
+        const locationController = new AbortController();
+        locationAbortControllerRef.current = locationController;
+
+        const locationsData = await fetchLocations(
+          query,
+          locationController.signal
+        );
+
+        if (
+          locationsData &&
+          locationsData.results &&
+          locationsData.results.length === 0
+        ) {
+          setLocationsData(null);
+          return;
+        }
+
+        setLocationsData(locationsData.results);
+      } else {
+        setLocationsData(null);
+      }
+    }, 250);
+
+    return () => {
+      clearTimeout(debounceHandler);
+    };
+  }, [query]);
 
   return (
     <div className="flex flex-row relative w-full md:w-lg">
