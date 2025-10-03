@@ -3,9 +3,13 @@ import { useState, useRef, useEffect } from "react";
 import { SearchIcon } from "../../assets/icons/pageIcons";
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
+import fetchLocations from "../../utils/fetchLocations";
+import type { ILocation } from "../../utils/fetchLocations";
+
 const SearchInput = () => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string>("");
   const [searchFocused, setSearchFocused] = useState(false);
+  const [locationsData, setLocationsData] = useState<ILocation[] | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const searchDropdownRef = useRef<HTMLDivElement>(null);
