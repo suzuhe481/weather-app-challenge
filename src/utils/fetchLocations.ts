@@ -1,5 +1,12 @@
-interface IAPIResponse<T> {
-  data?: T;
+interface ILocation {
+  name: string;
+  country: string;
+  latitude: number;
+  longitude: number;
+}
+
+interface IAPILocationsResponse {
+  results: ILocation[];
 }
 
 /**
@@ -8,12 +15,12 @@ interface IAPIResponse<T> {
  * @template T The type of the data returned by the API.
  * @param {string} query The query to search for.
  * @param {AbortSignal} signal The abort signal to cancel the fetch.
- * @returns {Promise<IAPIResponse<T>>} A promise containing the data returned by the API.
+ * @returns {Promise<IAPILocationsResponse>} A promise containing the data returned by the API.
  */
-export default async function fetchLocations<T>(
+export default async function fetchLocations(
   query: string,
   signal: AbortSignal
-): Promise<IAPIResponse<T>> {
+): Promise<IAPILocationsResponse> {
   const baseUrl = "https://geocoding-api.open-meteo.com/v1";
   const urlSuffix = "&language=en&format=json";
 
