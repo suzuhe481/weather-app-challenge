@@ -14,6 +14,14 @@ const SearchInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const searchDropdownRef = useRef<HTMLDivElement>(null);
 
+  // Determines if the dropdown should be displayed
+  const displayDropdown =
+    query !== "" &&
+    searchFocused &&
+    locationsData !== undefined &&
+    locationsData !== null &&
+    locationsData.length > 0;
+
   const handleOutsideInputClick = (event: MouseEvent) => {
     const target = event.target as Node;
 
@@ -59,12 +67,13 @@ const SearchInput = () => {
         className="text-preset-5-medium text-neutral-200 pl-15 bg-neutral-800 hover:bg-neutral-700 py-4 rounded-xl cursor-pointer shrink w-full"
       />
 
-      {query !== "" && searchFocused && (
+      {displayDropdown && (
         <SearchDropdown
           searchDropdownRef={searchDropdownRef}
           setQuery={setQuery}
           searchFocused={searchFocused}
           setSearchFocused={setSearchFocused}
+          locationsData={locationsData}
         />
       )}
     </div>
