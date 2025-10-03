@@ -121,8 +121,8 @@ export const DecorativeSmallCloud = ({ className }: IIconProps) => (
         y2="90.1672"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#3E45C5" />
-        <stop offset="1" stop-color="#3E46C7" />
+        <stop stopColor="#3E45C5" />
+        <stop offset="1" stopColor="#3E46C7" />
       </linearGradient>
     </defs>
   </svg>
@@ -150,8 +150,8 @@ export const DecorativeBigCloud = ({ className }: IIconProps) => (
         y2="122.913"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#332CAD" />
-        <stop offset="1" stop-color="#332DAD" />
+        <stop stopColor="#332CAD" />
+        <stop offset="1" stopColor="#332DAD" />
       </linearGradient>
     </defs>
   </svg>
