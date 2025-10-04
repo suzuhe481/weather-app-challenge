@@ -1,7 +1,12 @@
+import type { RefObject } from "react";
+
 interface IHourCardProps {
-  hour: string;
-  temperature: string;
-  weather: string;
+  hourcardsRefs: RefObject<HTMLDivElement[] | null>;
+  index: number;
+  time: string;
+  temperature: number;
+  currentHour: number;
+  weatherCode: number;
 }
 
 export const HourCard = ({ hour, temperature }: IHourCardProps) => {
