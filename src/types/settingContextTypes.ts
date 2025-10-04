@@ -26,4 +26,7 @@ export interface ISettingsContextProps {
   setPrecipitationUnits: Dispatch<SetStateAction<PrecipitationUnits>>;
 
   handleSystemChange: () => void;
+
+  hourlyForecastDay: number;
+  setHourlyForecastDay: Dispatch<SetStateAction<number>>;
 }
