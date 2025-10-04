@@ -45,7 +45,7 @@ const SearchDropdown = ({
           key={index}
           searchItemRefs={searchItemRefs}
           index={index}
-          location={location}
+          locationData={location}
           setQuery={setQuery}
           setSearchFocused={setSearchFocused}
         />
