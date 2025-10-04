@@ -1,22 +1,24 @@
 interface IDayDropdownItemProps {
-  day: string;
-  selectedDay: string;
-  action: (day: string) => void;
+  dayText: string;
+  dayValue: number;
+  selectedDay: number;
+  action: (day: number) => void;
 }
 
 const DayDropdownItem = ({
-  day,
+  dayText,
+  dayValue,
   selectedDay,
   action,
 }: IDayDropdownItemProps) => {
   return (
     <div
-      onClick={() => action(day)}
+      onClick={() => action(dayValue)}
       className={`${
-        selectedDay === day && "bg-neutral-700"
+        selectedDay === dayValue && "bg-neutral-700"
       } text-preset-7 text-neutral-0 py-2.5 px-2 hover:bg-neutral-700 rounded-lg cursor-pointer`}
     >
-      {day}
+      {dayText}
     </div>
   );
 };
