@@ -25,6 +25,9 @@ export const WeatherProvider = ({ children }: IWeatherProviderProps) => {
   const [coordinates, setCoordinates] = useState<ICoordinates | null>(null);
   const [country, setCountry] = useState<string | null>(null);
 
+  // Weather loading state
+  const [loading, setLoading] = useState<boolean | null>(null);
+
   const weatherAbortControllerRef = useRef<AbortController | null>(null);
 
   const {
@@ -94,6 +97,7 @@ export const WeatherProvider = ({ children }: IWeatherProviderProps) => {
         searchWeather,
         displayedLocation,
         setCountry,
+        loading,
       }}
     >
       {children}

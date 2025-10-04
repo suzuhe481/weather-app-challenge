@@ -50,4 +50,6 @@ export interface IWeatherContextProps {
   displayedLocation: string | null;
 
   setCountry: Dispatch<SetStateAction<string | null>>;
+
+  loading: boolean | null;
 }

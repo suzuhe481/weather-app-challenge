@@ -6,11 +6,12 @@ import HourlyForecast from "./components/HourlyForecast/HourlyForecast";
 import CurrentConditions from "./components/CurrentConditions/CurrentConditions";
 import DailyForecast from "./components/DailyForecast/DailyForecast";
 import StyledWrapper from "./components/StyledWrapper/StyledWrapper";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 import { useWeatherContext } from "./hooks/useWeatherContext";
 
 function App() {
-  const { weatherData } = useWeatherContext();
+  const { weatherData, loading } = useWeatherContext();
 
   return (
     <div className="bg-neutral-900 pt-6 pb-10 overflow-hidden min-h-screen">
@@ -18,7 +19,13 @@ function App() {
       <Hero />
       <SearchBar />
 
-      {weatherData !== null && (
+      {loading && (
+        <StyledWrapper>
+          <LoadingSpinner />
+        </StyledWrapper>
+      )}
+
+      {!loading && weatherData !== null && (
         <StyledWrapper>
           <div className="flex justify-center flex-col xl:flex-row gap-8 pt-8 md:pt-[42px]">
             <div className="flex flex-col justify-start w-full xl:max-w-[800px]">
