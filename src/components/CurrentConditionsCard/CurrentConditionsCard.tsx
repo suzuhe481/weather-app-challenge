@@ -1,6 +1,6 @@
 interface ICurrentConditionsCardProps {
   title: string;
-  value?: number;
+  value: number | null;
   units?: string;
   windDirection?: number;
 }
