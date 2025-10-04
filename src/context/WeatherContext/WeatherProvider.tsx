@@ -47,6 +47,9 @@ export const WeatherProvider = ({ children }: IWeatherProviderProps) => {
     if (coordinates) {
       const weatherController = new AbortController();
 
+      setLoading(true);
+      setWeatherData(null);
+
       const data = await fetchWeather(
         coordinates.latitude,
         coordinates.longitude,
@@ -62,6 +65,7 @@ export const WeatherProvider = ({ children }: IWeatherProviderProps) => {
       setDisplayedLocation(locationName);
 
       setWeatherData(transformedData);
+      setLoading(false);
     }
   };
 
