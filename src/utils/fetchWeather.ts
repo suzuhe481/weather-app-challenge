@@ -1,4 +1,6 @@
 interface ICurrentWeather {
+  time: string;
+
   temperature_2m: number;
   apparent_temperature: number;
   weather_code: number;

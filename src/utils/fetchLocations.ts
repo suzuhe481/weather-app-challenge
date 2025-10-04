@@ -3,6 +3,7 @@ export interface ILocation {
   country: string;
   latitude: number;
   longitude: number;
+  admin1: string; // The state if the location is in the United States.
 }
 
 export interface IAPILocationsResponse {

@@ -1,46 +1,28 @@
 import CurrentConditionsCard from "../CurrentConditionsCard/CurrentConditionsCard";
 
-const currentConditionsData = {
-  humidity: {
-    value: 46,
-    units: "%",
-  },
-  wind: {
-    value: 14,
-    units: "km/h",
-  },
-  precipitation: {
-    value: 0,
-    units: "mm",
-  },
-  uvIndex: {
-    value: 0,
-  },
-};
+import { useWeatherContext } from "../../hooks/useWeatherContext";
+import { useSettingsContext } from "../../hooks/useSettingsContext";
 
 const CurrentConditions = () => {
+  const { weatherData } = useWeatherContext();
+  const { windUnits, precipitationUnits } = useSettingsContext();
+
+  const humidity = weatherData && weatherData.currentWeather.humidity;
+  const wind = weatherData && weatherData.currentWeather.windSpeed;
+  const precipitation = weatherData && weatherData.currentWeather.precipitation;
+  const uvIndex = weatherData && weatherData.currentWeather.uvIndex;
+
   return (
     <div className="overflow-x-auto">
       <div className="grid grid-cols-2 lg:grid-cols-4 place-items-center min-w-[343px] w-full gap-5 mt-5">
-        <CurrentConditionsCard
-          title="Humidity"
-          value={currentConditionsData.humidity.value}
-          units={currentConditionsData.humidity.units}
-        />
-        <CurrentConditionsCard
-          title="Wind"
-          value={currentConditionsData.wind.value}
-          units={currentConditionsData.wind.units}
-        />
+        <CurrentConditionsCard title="Humidity" value={humidity} units={"%"} />
+        <CurrentConditionsCard title="Wind" value={wind} units={windUnits} />
         <CurrentConditionsCard
           title="Precipitation"
-          value={currentConditionsData.precipitation.value}
-          units={currentConditionsData.precipitation.units}
+          value={precipitation}
+          units={precipitationUnits}
         />
-        <CurrentConditionsCard
-          title="UV Index"
-          value={currentConditionsData.uvIndex.value}
-        />
+        <CurrentConditionsCard title="Max UV Index" value={uvIndex} />
       </div>
     </div>
   );
