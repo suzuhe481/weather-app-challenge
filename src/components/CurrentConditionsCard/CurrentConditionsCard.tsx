@@ -1,7 +1,8 @@
 interface ICurrentConditionsCardProps {
   title: string;
-  value: number;
+  value?: number;
   units?: string;
+  windDirection?: number;
 }
 
 const CurrentConditionsCard = ({
