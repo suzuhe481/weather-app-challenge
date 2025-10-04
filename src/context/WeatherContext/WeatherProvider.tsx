@@ -50,6 +50,12 @@ export const WeatherProvider = ({ children }: IWeatherProviderProps) => {
       setLoading(true);
       setWeatherData(null);
 
+      // Only sets the units if a new location is being searched.
+      // This allows the user to change the units for the same location.
+      if (locationName !== displayedLocation) {
+        setUnitsForCountry();
+      }
+
       const data = await fetchWeather(
         coordinates.latitude,
         coordinates.longitude,
@@ -59,8 +65,6 @@ export const WeatherProvider = ({ children }: IWeatherProviderProps) => {
         precipitationUnits
       );
 
-      setUnitsForCountry(); // Sets units appropriate for the country being searched
-
       const transformedData = transformWeatherData(data);
       setDisplayedLocation(locationName);
 
@@ -69,8 +73,16 @@ export const WeatherProvider = ({ children }: IWeatherProviderProps) => {
     }
   };
 
+  /**
+   * Sets the default units for the country being searched.
+   * Countries officially currently using the imperial system: "United States", "Liberia" and "Myanmar". .
+   */
   function setUnitsForCountry() {
-    if (country === "United States") {
+    if (
+      country === "United States" ||
+      country === "Liberia" ||
+      country === "Myanmar"
+    ) {
       setTemperatureUnits("Fahrenheit");
       setWindUnits("mph");
       setPrecipitationUnits("in");
