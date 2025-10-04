@@ -85,7 +85,7 @@ const SearchInput = () => {
       } else {
         setLocationsData(null);
       }
-    }, 250);
+    }, 150);
 
     return () => {
       clearTimeout(debounceHandler);
