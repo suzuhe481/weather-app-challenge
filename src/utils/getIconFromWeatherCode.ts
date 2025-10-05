@@ -56,7 +56,7 @@ const weatherIconMap: IWeatherIconMapProps = {
 const defaultIcon = ClearDay;
 
 export const getIconFromWeatherCode = (code: number | null) => {
-  if (!code) return defaultIcon;
+  if (code === null) return defaultIcon;
 
   const weatherIcon = weatherIconMap[code] || defaultIcon;
 

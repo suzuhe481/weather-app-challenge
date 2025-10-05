@@ -34,7 +34,7 @@ const weatherNameMap: IWeatherNameMapProps = {
 };
 
 export const getWeatherNameFromCode = (code: number | null) => {
-  if (!code) return "";
+  if (code === null) return "";
 
   const weatherName = weatherNameMap[code] || "";
 
