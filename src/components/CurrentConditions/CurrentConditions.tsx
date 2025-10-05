@@ -9,6 +9,7 @@ const CurrentConditions = () => {
 
   const humidity = weatherData && weatherData.currentWeather.humidity;
   const wind = weatherData && weatherData.currentWeather.windSpeed;
+  const windDirection = weatherData && weatherData.currentWeather.windDirection;
   const precipitation = weatherData && weatherData.currentWeather.precipitation;
   const uvIndex = weatherData && weatherData.currentWeather.uvIndex;
 
@@ -16,7 +17,12 @@ const CurrentConditions = () => {
     <div className="overflow-x-auto">
       <div className="grid grid-cols-2 lg:grid-cols-4 place-items-center min-w-[343px] w-full gap-5 mt-5">
         <CurrentConditionsCard title="Humidity" value={humidity} units={"%"} />
-        <CurrentConditionsCard title="Wind" value={wind} units={windUnits} />
+        <CurrentConditionsCard
+          title="Wind"
+          value={wind}
+          units={windUnits}
+          windDirection={windDirection}
+        />
         <CurrentConditionsCard
           title="Precipitation"
           value={precipitation}
