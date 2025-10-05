@@ -1,5 +1,7 @@
 import type { RefObject } from "react";
 
+import { getIconFromWeatherCode } from "../../utils/getIconFromWeatherCode";
+
 interface IHourCardProps {
   hourcardsRefs: RefObject<HTMLDivElement[] | null>;
   index: number;
@@ -15,12 +17,15 @@ export const HourCard = ({
   time,
   temperature,
   currentHour,
+  weatherCode,
 }: IHourCardProps) => {
   const dateObject = new Date(time);
   const hour = dateObject.toLocaleTimeString("en-US", {
     hour: "numeric",
     hourCycle: "h12",
   });
+
+  const WeatherIcon = getIconFromWeatherCode(weatherCode);
 
   const handleRefAssign = (el: HTMLDivElement | null) => {
     if (hourcardsRefs && hourcardsRefs.current && el !== null) {
@@ -40,8 +45,8 @@ export const HourCard = ({
       ref={(el) => handleRefAssign(el)}
       className={`flex flex-row items-center justify-between ${bgColors} rounded-lg h-15 py-[18px] pl-3 pr-4 border-1`}
     >
-      <div className="flex flex-row items-center gap-2">
-        <div className="bg-white size-4 rounded-xl"></div>
+      <div className="flex flex-row justify-center items-center gap-2">
+        <WeatherIcon className="size-10" />
         <div className="text-preset-5-medium text-neutral-0">{hour}</div>
       </div>
       <div className="text-preset-7 text-neutral-0">
