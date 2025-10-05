@@ -5,6 +5,8 @@ import {
 } from "../../assets/icons/pageIcons";
 
 import { useWeatherContext } from "../../hooks/useWeatherContext";
+import { getIconFromWeatherCode } from "../../utils/getIconFromWeatherCode";
+import { getWeatherNameFromCode } from "../../utils/getWeatherNameFromCode";
 
 const MainWeather = () => {
   const { weatherData, displayedLocation } = useWeatherContext();
@@ -23,6 +25,10 @@ const MainWeather = () => {
   const currentTemperature =
     weatherData && weatherData.currentWeather.temperature;
   const currentFeelsLike = weatherData && weatherData.currentWeather.feelsLike;
+
+  const weatherCode = weatherData && weatherData.currentWeather.weatherCode;
+  const WeatherIcon = getIconFromWeatherCode(weatherCode);
+  const WeatherName = getWeatherNameFromCode(weatherCode);
 
   return (
     <div className="relative flex flex-col gap-4 md:gap-0 md:flex-row justify-center md:justify-between items-center px-6 bg-gradient-to-tr from-blue-500 to-blue-700 w-full xl:w-[800px] h-[286px] rounded-[20px] overflow-hidden">
@@ -43,7 +49,14 @@ const MainWeather = () => {
         <span className="text-preset-6 text-neutral-0">{currentDate}</span>
       </div>
       <div className="flex flex-row items-center gap-5 z-100">
-        <div className="bg-white size-30 rounded-xl"></div>
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex justify-center items-center w-full">
+            <WeatherIcon className="size-30" />
+          </div>
+          <span className="text-preset-5 text-neutral-0 italic">
+            {WeatherName}
+          </span>
+        </div>
         <div className="flex flex-col">
           <span className="text-preset-1 text-neutral-0">
             {currentTemperature && Math.round(currentTemperature)}°
