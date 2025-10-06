@@ -6,11 +6,12 @@ This is my solution to the [Weather app challenge on Frontend Mentor](https://ww
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshot](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
+  - [Weather Icon Animations](#weather-icon-animations)
 - [Author](#author)
 - [Releases](#releases)
 
@@ -32,6 +33,16 @@ Users should be able to:
 - See hover and focus states for all interactive elements on the page
 
 ### Screenshots
+<img width="1890" height="854" alt="image" src="https://github.com/user-attachments/assets/323bafe3-ced5-4094-9b36-c88a036ae5ca" />
+
+<img width="1027" height="662" alt="image" src="https://github.com/user-attachments/assets/1d397ba8-31bd-45c7-bcec-070b83d9d7f1" />
+
+<img width="1154" height="842" alt="image" src="https://github.com/user-attachments/assets/3224442a-b3d8-4a74-97e9-ee74eb7a4c5c" />
+
+<img width="479" height="556" alt="image" src="https://github.com/user-attachments/assets/609411f9-c6d7-47fb-86b1-5708362583a4" />
+
+<img width="484" height="765" alt="image" src="https://github.com/user-attachments/assets/433d42f6-47ad-4df0-af97-d5a964897e31" />
+
 
 ### Links
 
@@ -51,11 +62,10 @@ Users should be able to:
 
 I'm using this opportunity to practice creating a frontend from a given design. I want to test my accuracy in replicating an app, similarly to a real work environment. To accomplish this, I'm focusing on planning first, and coding second. By organizing what I need to do and how to do it, I hope to encounter less problems during this challenge, and be quicker in implenting my solution.
 
-### Continued Development
+### Weather Icon Animations
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+![Recording 2025-10-05 231405](https://github.com/user-attachments/assets/ba551535-90de-4e95-aae4-59922eb5bb3a)
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
 
 ## Author
 
