@@ -2,6 +2,8 @@ import type { Dispatch, SetStateAction } from "react";
 
 export type WeatherData = {
   currentWeather: {
+    time: string;
+
     temperature: number;
     feelsLike: number;
     weatherCode: number;
@@ -10,26 +12,44 @@ export type WeatherData = {
     windSpeed: number;
     windDirection: number;
     uvIndex: number;
-  } | null;
+    precipitation: number;
+  };
   dailyWeather:
     | {
         date: string;
         weatherCode: number;
         high_temperature: number;
         low_temperature: number;
-      }[]
-    | null;
+      }[];
 
   hourlyWeather:
     | {
         time: string;
         weatherCode: number;
         temperature: number;
-      }[]
-    | null;
+      }[];
 };
 
+export interface ICoordinates {
+  latitude: number;
+  longitude: number;
+}
+
 export interface IWeatherContextProps {
-  weatherData: WeatherData;
-  setWeatherData: Dispatch<SetStateAction<WeatherData>>;
+  weatherData: WeatherData | null;
+  setWeatherData: Dispatch<SetStateAction<WeatherData | null>>;
+
+  locationName: string | null;
+  setLocationName: Dispatch<SetStateAction<string | null>>;
+
+  coordinates: ICoordinates | null;
+  setCoordinates: Dispatch<SetStateAction<ICoordinates | null>>;
+
+  searchWeather: () => void;
+
+  displayedLocation: string | null;
+
+  setCountry: Dispatch<SetStateAction<string | null>>;
+
+  loading: boolean | null;
 }

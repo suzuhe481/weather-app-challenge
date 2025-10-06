@@ -11,6 +11,7 @@ export const transformWeatherData = (
   data: IAPIWeatherResponse
 ): WeatherData => {
   const currentWeather = {
+    time: data.current.time,
     temperature: data.current.temperature_2m,
     feelsLike: data.current.apparent_temperature,
     weatherCode: data.current.weather_code,
@@ -18,6 +19,7 @@ export const transformWeatherData = (
     windSpeed: data.current.wind_speed_10m,
     windDirection: data.current.wind_direction_10m,
     uvIndex: data.daily.uv_index_max[0], // Uses daily max of first day becuase there's no UV index for current weather.
+    precipitation: data.current.precipitation,
   };
 
   const dailyWeather = data.daily.time.map((time, index) => ({

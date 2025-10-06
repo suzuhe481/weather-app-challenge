@@ -3,14 +3,29 @@ import { useState, useRef, useEffect } from "react";
 import { ArrowIcon } from "../../assets/icons/pageIcons";
 import DayDropdown from "../DayDropdown/DayDropdown";
 
-interface IDayButtonProps {
-  currentDay: string;
-}
+import { useSettingsContext } from "../../hooks/useSettingsContext";
+import { useWeatherContext } from "../../hooks/useWeatherContext";
 
-export const DayButton = ({ currentDay }: IDayButtonProps) => {
+export const DayButton = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const { hourlyForecastDay } = useSettingsContext();
+  const { weatherData } = useWeatherContext();
+  const hourlyWeatherData = weatherData && weatherData?.hourlyWeather;
+
+  // Calculating the selected day based on the hourlyForecastDay value
+  const selectedDay =
+    hourlyWeatherData && hourlyWeatherData[hourlyForecastDay * 24].time;
+  const selectedDayObject = new Date(selectedDay as string);
+
+  let selectedDayText = selectedDayObject.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+
+  // Changes the selected day text to "Today" if the day is today
+  if (hourlyForecastDay === 0) selectedDayText = "Today";
 
   // Handler function to close modal on outside click.
   function handleClickOutsideMenu(event: MouseEvent) {
@@ -55,7 +70,7 @@ export const DayButton = ({ currentDay }: IDayButtonProps) => {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className="flex flex-row items-center gap-3 rounded-lg bg-neutral-600 hover:bg-neutral-700 py-2 px-4 text-preset-7 text-neutral-0 cursor-pointer"
       >
-        {currentDay} <ArrowIcon />
+        {selectedDayText} <ArrowIcon />
       </button>
       {dropdownOpen && <DayDropdown ref={dropdownRef} />}
     </div>

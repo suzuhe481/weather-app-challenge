@@ -1,11 +1,12 @@
-interface ILocation {
+export interface ILocation {
   name: string;
   country: string;
   latitude: number;
   longitude: number;
+  admin1: string; // The state if the location is in the United States.
 }
 
-interface IAPILocationsResponse {
+export interface IAPILocationsResponse {
   results: ILocation[];
 }
 

@@ -3,12 +3,25 @@ import { useState, useRef, useEffect } from "react";
 import { SearchIcon } from "../../assets/icons/pageIcons";
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
+import fetchLocations from "../../utils/fetchLocations";
+import type { ILocation } from "../../utils/fetchLocations";
+
 const SearchInput = () => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string>("");
   const [searchFocused, setSearchFocused] = useState(false);
+  const [locationsData, setLocationsData] = useState<ILocation[] | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const searchDropdownRef = useRef<HTMLDivElement>(null);
+  const locationAbortControllerRef = useRef<AbortController | null>(null);
+
+  // Determines if the dropdown should be displayed
+  const displayDropdown =
+    query !== "" &&
+    searchFocused &&
+    locationsData !== undefined &&
+    locationsData !== null &&
+    locationsData.length > 0;
 
   const handleOutsideInputClick = (event: MouseEvent) => {
     const target = event.target as Node;
@@ -41,6 +54,44 @@ const SearchInput = () => {
     };
   });
 
+  // Fetches locations on input query change
+  useEffect(() => {
+    // Debounces fetch
+    const debounceHandler = setTimeout(async () => {
+      if (locationAbortControllerRef.current) {
+        locationAbortControllerRef.current.abort();
+      }
+
+      // API only accepts strings of length >= 3
+      if (query.length >= 3) {
+        const locationController = new AbortController();
+        locationAbortControllerRef.current = locationController;
+
+        const locationsData = await fetchLocations(
+          query,
+          locationController.signal
+        );
+
+        if (
+          locationsData &&
+          locationsData.results &&
+          locationsData.results.length === 0
+        ) {
+          setLocationsData(null);
+          return;
+        }
+
+        setLocationsData(locationsData.results);
+      } else {
+        setLocationsData(null);
+      }
+    }, 150);
+
+    return () => {
+      clearTimeout(debounceHandler);
+    };
+  }, [query]);
+
   return (
     <div className="flex flex-row relative w-full md:w-lg">
       <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2" />
@@ -55,12 +106,13 @@ const SearchInput = () => {
         className="text-preset-5-medium text-neutral-200 pl-15 bg-neutral-800 hover:bg-neutral-700 py-4 rounded-xl cursor-pointer shrink w-full"
       />
 
-      {query !== "" && searchFocused && (
+      {displayDropdown && (
         <SearchDropdown
           searchDropdownRef={searchDropdownRef}
           setQuery={setQuery}
           searchFocused={searchFocused}
           setSearchFocused={setSearchFocused}
+          locationsData={locationsData}
         />
       )}
     </div>

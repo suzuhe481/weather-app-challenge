@@ -21,6 +21,8 @@ export const SettingsProvider = ({ children }: ISettingsProviderProps) => {
   const [precipitationUnits, setPrecipitationUnits] =
     useState<PrecipitationUnits>("mm");
 
+  const [hourlyForecastDay, setHourlyForecastDay] = useState(0); // 0 = today, 1 = tomorrow, etc
+
   const setAllToImperial = () => {
     setWindUnits("mph");
     setTemperatureUnits("Fahrenheit");
@@ -70,6 +72,8 @@ export const SettingsProvider = ({ children }: ISettingsProviderProps) => {
         precipitationUnits,
         setPrecipitationUnits,
         handleSystemChange,
+        hourlyForecastDay,
+        setHourlyForecastDay,
       }}
     >
       {children}

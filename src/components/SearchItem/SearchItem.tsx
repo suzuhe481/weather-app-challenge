@@ -1,9 +1,11 @@
 import type { Dispatch, SetStateAction, RefObject } from "react";
+import type { ILocation } from "../../utils/fetchLocations";
+import { useWeatherContext } from "../../hooks/useWeatherContext";
 
 interface ISearchItemProps {
   searchItemRefs: RefObject<HTMLButtonElement[] | null>;
   index: number;
-  location: string;
+  locationData: ILocation;
   setQuery: Dispatch<SetStateAction<string>>;
   setSearchFocused: Dispatch<SetStateAction<boolean>>;
 }
@@ -11,14 +13,42 @@ interface ISearchItemProps {
 const SearchItem = ({
   searchItemRefs,
   index,
-  location,
+  locationData,
   setQuery,
   setSearchFocused,
 }: ISearchItemProps) => {
+  const { setLocationName, setCoordinates, setCountry } = useWeatherContext();
+
+  const location = transformLocationName(locationData);
+
   const handleButtonClick = () => {
     setQuery(location);
+
+    setLocationName(location);
+    setCoordinates({
+      latitude: locationData.latitude,
+      longitude: locationData.longitude,
+    });
+    setCountry(locationData.country);
+
     setSearchFocused(false);
   };
+
+  /**
+   * Transforms the location name to a more readable format.
+   * Displays city, state for United States.
+   * Displays city, country for other locations.
+   *
+   * @param locationData The location data to be transformed.
+   * @returns The transformed location name.
+   */
+  function transformLocationName(locationData: ILocation) {
+    if (locationData.country === "United States") {
+      return `${locationData.name}, ${locationData.admin1}`;
+    }
+
+    return `${locationData.name}, ${locationData.country}`;
+  }
 
   /**
    * Assigns the given HTMLButtonElement to the corresponding index in the searchItemRefs array.

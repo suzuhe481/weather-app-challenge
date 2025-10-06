@@ -1,28 +1,26 @@
 import { useState, useRef } from "react";
-
 import type { Dispatch, SetStateAction, RefObject, KeyboardEvent } from "react";
 
 import SearchItem from "../SearchItem/SearchItem";
-
 import { handleKeyDown } from "../../utils/searchDropdownUtils";
+import type { ILocation } from "../../utils/fetchLocations";
 
 interface ISearchDropdownProps {
   searchDropdownRef: RefObject<HTMLDivElement | null>;
   setQuery: Dispatch<SetStateAction<string>>;
   searchFocused: boolean;
   setSearchFocused: Dispatch<SetStateAction<boolean>>;
+  locationsData: ILocation[];
 }
-
-const exampleLocations = ["New York", "London", "Tokyo"];
 
 const SearchDropdown = ({
   searchDropdownRef,
   setQuery,
   searchFocused,
   setSearchFocused,
+  locationsData,
 }: ISearchDropdownProps) => {
-  const [suggestions] = useState(exampleLocations);
-  const [suggestionsIndex, setSuggestionsIndex] = useState<number | null>(null);
+  const [locationsIndex, setLocationsIndex] = useState<number | null>(null);
 
   const searchItemRefs = useRef<HTMLButtonElement[] | null>([]); // Refs to all SearchItems
 
@@ -34,20 +32,20 @@ const SearchDropdown = ({
         handleKeyDown(
           event,
           searchFocused,
-          suggestionsIndex,
-          suggestions,
-          setSuggestionsIndex,
+          locationsIndex,
+          locationsData.length,
+          setLocationsIndex,
           searchItemRefs
         )
       }
       className="absolute right-0 top-full mt-2.5 flex flex-col gap-1 bg-neutral-800 w-full rounded-xl p-2 border-neutral-700 border-1 z-500"
     >
-      {exampleLocations.map((location, index) => (
+      {locationsData.map((location, index) => (
         <SearchItem
           key={index}
           searchItemRefs={searchItemRefs}
           index={index}
-          location={location}
+          locationData={location}
           setQuery={setQuery}
           setSearchFocused={setSearchFocused}
         />
