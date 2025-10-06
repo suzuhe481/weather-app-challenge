@@ -5,6 +5,7 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
 import fetchLocations from "../../utils/fetchLocations";
 import type { ILocation } from "../../utils/fetchLocations";
+import { AnimatePresence } from "motion/react";
 
 const SearchInput = () => {
   const [query, setQuery] = useState<string>("");
@@ -106,15 +107,17 @@ const SearchInput = () => {
         className="text-preset-5-medium text-neutral-200 pl-15 bg-neutral-800 hover:bg-neutral-700 py-4 rounded-xl cursor-pointer shrink w-full"
       />
 
-      {displayDropdown && (
-        <SearchDropdown
-          searchDropdownRef={searchDropdownRef}
-          setQuery={setQuery}
-          searchFocused={searchFocused}
-          setSearchFocused={setSearchFocused}
-          locationsData={locationsData}
-        />
-      )}
+      <AnimatePresence initial={false}>
+        {displayDropdown && (
+          <SearchDropdown
+            searchDropdownRef={searchDropdownRef}
+            setQuery={setQuery}
+            searchFocused={searchFocused}
+            setSearchFocused={setSearchFocused}
+            locationsData={locationsData}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

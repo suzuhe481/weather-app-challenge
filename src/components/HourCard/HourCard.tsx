@@ -46,7 +46,7 @@ export const HourCard = ({
       className={`flex flex-row items-center justify-between ${bgColors} rounded-lg h-15 py-[18px] pl-3 pr-4 border-1`}
     >
       <div className="flex flex-row justify-center items-center gap-2">
-        <WeatherIcon className="size-10" />
+        <WeatherIcon animate={true} className="size-10" />
         <div className="text-preset-5-medium text-neutral-0">{hour}</div>
       </div>
       <div className="text-preset-7 text-neutral-0">

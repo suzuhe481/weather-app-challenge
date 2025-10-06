@@ -1,6 +1,7 @@
 import type { RefObject } from "react";
 
 import DayDropdownItem from "../DayDropdownItem/DayDropdownItem";
+import { motion } from "motion/react";
 
 import { useWeatherContext } from "../../hooks/useWeatherContext";
 import { useSettingsContext } from "../../hooks/useSettingsContext";
@@ -32,7 +33,10 @@ const DayDropdown = ({ ref }: IDayDropdownProps) => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, y: -100 }}
+      exit={{ opacity: 0, scale: 1, y: -50 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
       ref={ref}
       className="absolute right-0 top-full flex flex-col gap-1 w-[214px] mt-2.5 p-2 rounded-xl bg-neutral-800 border-1 border-neutral-600 z-500"
     >
@@ -46,7 +50,7 @@ const DayDropdown = ({ ref }: IDayDropdownProps) => {
             action={handleDayClick}
           />
         ))}
-    </div>
+    </motion.div>
   );
 };
 
