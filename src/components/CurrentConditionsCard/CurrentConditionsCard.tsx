@@ -26,7 +26,11 @@ const CurrentConditionsCard = ({
 
         return (
           <div className="flex justify-center items-center h-full">
-            <WindArrow className={svgClass} style={rotateStyle} />
+            <WindArrow
+              animate={false}
+              className={svgClass}
+              style={rotateStyle}
+            />
           </div>
         );
       }
