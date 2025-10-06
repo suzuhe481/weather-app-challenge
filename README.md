@@ -63,6 +63,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Releases
 
+- [v1.0.0](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v1.0.0)
 - [v0.4.0 (Pre-release)](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v0.4.0)
 - [v0.3.0 (Pre-release)](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v0.3.0)
 - [v0.2.0 (Pre-release)](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v0.2.0)
