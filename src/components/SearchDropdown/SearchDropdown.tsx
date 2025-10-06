@@ -4,6 +4,7 @@ import type { Dispatch, SetStateAction, RefObject, KeyboardEvent } from "react";
 import SearchItem from "../SearchItem/SearchItem";
 import { handleKeyDown } from "../../utils/searchDropdownUtils";
 import type { ILocation } from "../../utils/fetchLocations";
+import { motion } from "motion/react";
 
 interface ISearchDropdownProps {
   searchDropdownRef: RefObject<HTMLDivElement | null>;
@@ -25,7 +26,11 @@ const SearchDropdown = ({
   const searchItemRefs = useRef<HTMLButtonElement[] | null>([]); // Refs to all SearchItems
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      exit={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
       ref={searchDropdownRef}
       tabIndex={0}
       onKeyDown={(event: KeyboardEvent<HTMLDivElement>) =>
@@ -50,7 +55,7 @@ const SearchDropdown = ({
           setSearchFocused={setSearchFocused}
         />
       ))}
-    </div>
+    </motion.div>
   );
 };
 
