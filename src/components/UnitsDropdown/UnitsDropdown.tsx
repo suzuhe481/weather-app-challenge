@@ -1,4 +1,5 @@
 import type { RefObject } from "react";
+import { motion } from "motion/react";
 
 import UnitsDropdownGroup from "../UnitsDropdownGroup/UnitsDropdownGroup";
 
@@ -66,7 +67,10 @@ const UnitsDropdown = ({ ref }: IUnitsDropdownProps) => {
   const switchToSystem = system === "Metric" ? "Imperial" : "Metric";
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, y: -100 }}
+      exit={{ opacity: 0, scale: 1, y: -50 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
       ref={ref}
       className="absolute right-0 top-full mt-2.5 rounded-xl py-1.5 px-2 flex flex-col gap-1 items-start w-[214px] bg-neutral-800 border-neutral-600 border-1 z-50000"
     >
@@ -109,7 +113,7 @@ const UnitsDropdown = ({ ref }: IUnitsDropdownProps) => {
         action={setPrecipitationUnits}
         selected={precipitationUnits}
       />
-    </div>
+    </motion.div>
   );
 };
 

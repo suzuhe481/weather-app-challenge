@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 
 import { ArrowIcon } from "../../assets/icons/pageIcons";
 import DayDropdown from "../DayDropdown/DayDropdown";
+import { AnimatePresence } from "motion/react";
 
 import { useSettingsContext } from "../../hooks/useSettingsContext";
 import { useWeatherContext } from "../../hooks/useWeatherContext";
@@ -72,7 +73,9 @@ export const DayButton = () => {
       >
         {selectedDayText} <ArrowIcon />
       </button>
-      {dropdownOpen && <DayDropdown ref={dropdownRef} />}
+      <AnimatePresence initial={false}>
+        {dropdownOpen && <DayDropdown ref={dropdownRef} />}
+      </AnimatePresence>
     </div>
   );
 };
