@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import UnitsDropdown from "../UnitsDropdown/UnitsDropdown";
 import { CogIcon, ArrowIcon } from "../../assets/icons/pageIcons";
+import { AnimatePresence } from "motion/react";
 
 const UnitsButton = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -55,7 +56,9 @@ const UnitsButton = () => {
         <p className="text-preset-7 text-neutral-0">Units</p>
         <ArrowIcon />
       </button>
-      {dropdownOpen && <UnitsDropdown ref={dropdownRef} />}
+      <AnimatePresence initial={false}>
+        {dropdownOpen && <UnitsDropdown ref={dropdownRef} />}
+      </AnimatePresence>
     </div>
   );
 };
