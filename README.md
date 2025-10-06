@@ -33,6 +33,7 @@ Users should be able to:
 - See hover and focus states for all interactive elements on the page
 
 ### Screenshots
+
 <img width="1890" height="854" alt="image" src="https://github.com/user-attachments/assets/323bafe3-ced5-4094-9b36-c88a036ae5ca" />
 
 <img width="1027" height="662" alt="image" src="https://github.com/user-attachments/assets/1d397ba8-31bd-45c7-bcec-070b83d9d7f1" />
@@ -42,7 +43,6 @@ Users should be able to:
 <img width="479" height="556" alt="image" src="https://github.com/user-attachments/assets/609411f9-c6d7-47fb-86b1-5708362583a4" />
 
 <img width="484" height="765" alt="image" src="https://github.com/user-attachments/assets/433d42f6-47ad-4df0-af97-d5a964897e31" />
-
 
 ### Links
 
@@ -66,13 +66,13 @@ I'm using this opportunity to practice creating a frontend from a given design. 
 
 ![Recording 2025-10-05 231405](https://github.com/user-attachments/assets/ba551535-90de-4e95-aae4-59922eb5bb3a)
 
-
 ## Author
 
 - Portfolio - [Hector](https://www.hectorsuazo.com/)
 
 ## Releases
 
+- [v1.1.0](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v1.1.0)
 - [v1.0.0](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v1.0.0)
 - [v0.4.0 (Pre-release)](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v0.4.0)
 - [v0.3.0 (Pre-release)](https://github.com/suzuhe481/weather-app-challenge/releases/tag/v0.3.0)
