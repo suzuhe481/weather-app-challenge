@@ -51,7 +51,7 @@ const MainWeather = () => {
       <div className="flex flex-row items-center gap-5 z-100">
         <div className="flex flex-col items-center gap-2">
           <div className="flex justify-center items-center w-full">
-            <WeatherIcon className="size-30" />
+            <WeatherIcon animate={true} className="size-30" />
           </div>
           <span className="text-preset-5 text-neutral-0 italic">
             {WeatherName}
